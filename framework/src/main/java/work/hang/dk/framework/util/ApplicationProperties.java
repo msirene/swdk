@@ -16,7 +16,7 @@ public class ApplicationProperties {
 		prop = props;
 	}
 
-	private static String getProperty(String key) {
+	public static String getProperty(String key) {
 		if (prop != null) {
 			return prop.getProperty(key);
 		} else {

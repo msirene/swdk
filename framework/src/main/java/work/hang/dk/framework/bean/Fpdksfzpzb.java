@@ -10,6 +10,7 @@ package work.hang.dk.framework.bean;
 public class Fpdksfzpzb extends BaseBean {
 
 	private static final long serialVersionUID = 373006856815117997L;
+
 	private String id;
 	/**
 	 * 征收项目代码

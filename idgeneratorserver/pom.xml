@@ -9,10 +9,29 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>framework</artifactId>
+    <artifactId>idgeneratorserver</artifactId>
 
-    <name>framework</name>
+    <name>idgeneratorserver</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
+
+
+
+    <dependencies>
+        <dependency>
+            <groupId>work.hang</groupId>
+            <artifactId>framework</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+
+        <dependency>
+            <groupId>work.hang</groupId>
+            <artifactId>idgenerator</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+
 
 </project>
