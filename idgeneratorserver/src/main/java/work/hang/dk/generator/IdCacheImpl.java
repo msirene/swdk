@@ -1,5 +1,8 @@
 package work.hang.dk.generator;
 
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import work.hang.dk.framework.bean.RemoteParameter;
 import work.hang.dk.framework.constant.CommonConstant;
@@ -21,9 +24,11 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @author 六哥
  * @date 2018/7/10
  */
+@Slf4j
 @Service("idCache")
 public class IdCacheImpl implements IdCache {
-	//private Logger logger = LoggerFactory.getLogger(IdCache.class);
+
+	private Logger logger = LoggerFactory.getLogger(IdCache.class);
 
 	@Resource
 	private RedisService redisService;
@@ -54,7 +59,7 @@ public class IdCacheImpl implements IdCache {
 			parameter.setData(res);
 		} catch (Exception e) {
 			parameter.fail(e.getMessage());
-			//logger.error("获取主键失败！", e);
+			log.error("获取主键失败！", e);
 		} finally {
 			lock.readLock().unlock();
 		}

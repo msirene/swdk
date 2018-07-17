@@ -1,5 +1,6 @@
 package work.hang.dk.framework.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigInteger;
@@ -11,6 +12,7 @@ import java.math.BigInteger;
  * @author 六哥
  * @date 2018/5/31
  */
+@Slf4j
 public final class CodeNumUtil {
 	//private static Logger logger = LoggerFactory.getLogger(CodeNumUtil.class);
 
@@ -99,7 +101,7 @@ public final class CodeNumUtil {
 		String codeNumStr = getQrCodeNum(new BigInteger(s), 10);
 		String codeNumZero = "0000000000";
 		if (StringUtils.equals(codeNumStr, codeNumZero)) {
-			//logger.error(String.format("errorNumssss:%s%s", s, "*****"));
+			log.error(String.format("errorNumssss:%s%s", s, "*****"));
 			throw new RuntimeException();
 		}
 		return codeNumStr;

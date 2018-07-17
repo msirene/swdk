@@ -1,5 +1,7 @@
 package work.hang.dk.framework.generator;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -10,6 +12,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  * @author 六哥
  * @date 2018/6/4
  */
+@Slf4j
 public class PrimaryKeyQueue {
 	//private static Logger logger = LoggerFactory.getLogger(PrimaryKeyQueue.class);
 	/**
@@ -21,7 +24,7 @@ public class PrimaryKeyQueue {
 		try {
 			return queue.take().toString();
 		} catch (Exception e) {
-			//logger.error("获取主键失败", e);
+			log.error("获取主键失败", e);
 		}
 		return null;
 	}

@@ -1,5 +1,8 @@
 package work.hang.dk.generator;
 
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import work.hang.dk.framework.redis.RedisService;
 import work.hang.dk.framework.thread.ThreadService;
@@ -17,9 +20,11 @@ import java.util.ResourceBundle;
  * @author 六哥
  * @date 2018/7/10
  */
+@Slf4j
 @Component
 public class Generator {
-	//private Logger logger = LoggerFactory.getLogger(Generator.class);
+
+	private Logger logger = LoggerFactory.getLogger(Generator.class);
 
 	@Resource
 	private RedisService redisService;
@@ -50,13 +55,13 @@ public class Generator {
 
 	@PostConstruct
 	public void initialization() {
-		//logger.info("Generator启动");
+		log.info("Generator启动");
 		threadService.execute(new WorkThread(redisService, snowflakeIdWorker));
 	}
 
 	@PreDestroy
 	public void close() {
-		//logger.info("Generator关闭");
+		log.info("Generator关闭");
 		flag = false;
 		threadService.close();
 	}

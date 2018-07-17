@@ -1,5 +1,8 @@
 package work.hang.dk.generator;
 
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import work.hang.dk.framework.constant.CommonConstant;
 import work.hang.dk.framework.redis.RedisService;
 import work.hang.dk.framework.util.ApplicationProperties;
@@ -14,8 +17,10 @@ import java.util.List;
  * @author 六哥
  * @date 2018/7/10
  */
+@Slf4j
 public class WorkThread implements Runnable {
-	//private Logger logger = LoggerFactory.getLogger(WorkThread.class);
+
+	private Logger logger = LoggerFactory.getLogger(WorkThread.class);
 	private RedisService redisService;
 	private SnowflakeIdWorker snowflakeIdWorker;
 	private Generator generator;
@@ -45,9 +50,9 @@ public class WorkThread implements Runnable {
 				}
 				Thread.sleep(interval);
 			} catch (Exception e) {
-				//logger.error("snowflakeId 入队列失败", e);
+				log.error("snowflakeId 入队列失败", e);
 			}
 		}
-		//logger.info("主键生成线程正常结束！");
+		log.info("主键生成线程正常结束！");
 	}
 }

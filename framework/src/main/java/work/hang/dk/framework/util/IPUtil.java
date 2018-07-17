@@ -1,5 +1,6 @@
 package work.hang.dk.framework.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.net.InetAddress;
@@ -13,6 +14,7 @@ import java.util.Enumeration;
  * @author 六哥
  * @date 2018/6/4
  */
+@Slf4j
 public class IPUtil {
 
 	//protected static Logger logger = LoggerFactory.getLogger(IPUtil.class);
@@ -72,7 +74,7 @@ public class IPUtil {
 			}
 			return sIP;
 		} catch (Exception e) {
-			//logger.error("", e);
+			log.error("", e);
 		}
 		return null;
 

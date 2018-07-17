@@ -13,15 +13,25 @@
         <module>idgenerator</module>
         <module>idgeneratorserver</module>
     </modules>
+
     <dependencies>
         <!-- junit begin -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
-            <scope>test</scope>
         </dependency>
         <!-- junit end -->
+
+        <!-- lombok begin -->
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- lombok end -->
 
         <!-- log begin -->
         <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
@@ -29,7 +39,37 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
-            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.logback-extensions/logback-ext-spring -->
+        <dependency>
+            <groupId>org.logback-extensions</groupId>
+            <artifactId>logback-ext-spring</artifactId>
+            <version>0.1.5</version>
+        </dependency>
+
+        <!-- 代码直接调用log4j会被桥接到slf4j -->
+        <!-- https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+        <!-- 代码直接调用common-logging会被桥接到slf4j -->
+        <!-- https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+        <!-- 代码直接调用java.util.logging会被桥接到slf4j -->
+        <!-- https://mvnrepository.com/artifact/org.slf4j/jul-to-slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <version>1.7.25</version>
         </dependency>
         <!-- log end -->
 
@@ -81,20 +121,6 @@
         </dependency>
         <!-- spring end -->
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework</groupId>-->
-        <!--<artifactId>spring-core</artifactId>-->
-        <!--<version>5.0.7.RELEASE</version>-->
-        <!--</dependency>-->
-
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework</groupId>-->
-        <!--<artifactId>spring-beans</artifactId>-->
-        <!--<version>5.0.7.RELEASE</version>-->
-        <!--</dependency>-->
-
         <!-- redis start -->
         <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
         <dependency>
@@ -104,7 +130,6 @@
         </dependency>
         <!-- redis end -->
     </dependencies>
-
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -117,7 +142,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.5.2</version>
+                    <version>3.7.0</version>
                     <configuration>
                         <source>${java.version}</source>
                         <target>${java.version}</target>

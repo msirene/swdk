@@ -1,5 +1,6 @@
 package work.hang.dk.framework.log;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -15,17 +16,19 @@ import java.util.Set;
  * @author 六哥
  * @date 2018/6/4
  */
+@Slf4j
 public class WebLoggingAspect {
 
 	//private Logger logger = LoggerFactory.getLogger(WebLoggingAspect.class);
 
+	private Set<String> excludeMethods = new HashSet<>();
+
 	public void setExcludeMethods() {
 		Set<String> excludeMethods = new HashSet<>();
-		//this.excludeMethods = excludeMethods;
+		this.excludeMethods = excludeMethods;
 	}
 
 	public Object aroundMethod(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-		//Object result = null;
 		try {
 			Signature classMethod = proceedingJoinPoint.getSignature();
 			String methodName = classMethod.getName();
@@ -37,21 +40,21 @@ public class WebLoggingAspect {
 			}
 			String sn = args[0].toString();
 
-			//if (!excludeMethods.contains(methodName)) {
-			//	//前置通知
-			//	//logger.info(CommonUtil.appendSerialNumber(sn, "方法[%s]开始！", classMethod));
-			//}
-			//if (args.length > 1 && args[1] != null) {
-			//	//logger.info(CommonUtil.appendSerialNumber(sn, "参数：%s", args[1].toString()));
-			//}
-			////result = proceedingJoinPoint.proceed(args);
-			//if (!excludeMethods.contains(methodName)) {
-			//	//后置通知
-			//	//logger.info(CommonUtil.appendSerialNumber(sn, "方法[%s]结束！", classMethod));
-			//}
-			return proceedingJoinPoint.proceed(args);
+			if (!excludeMethods.contains(methodName)) {
+				//前置通知
+				log.info(CommonUtil.appendSerialNumber(sn, "方法[%s]开始！", classMethod));
+			}
+			if (args.length > 1 && args[1] != null) {
+				log.info(CommonUtil.appendSerialNumber(sn, "参数：%s", args[1].toString()));
+			}
+			Object result = proceedingJoinPoint.proceed(args);
+			if (!excludeMethods.contains(methodName)) {
+				//后置通知
+				log.info(CommonUtil.appendSerialNumber(sn, "方法[%s]结束！", classMethod));
+			}
+			return result;
 		} catch (Throwable e) {
-			//logger.error("环绕日志处理发生异常！", e);
+			log.error("环绕日志处理发生异常！", e);
 			throw e;
 		}
 	}

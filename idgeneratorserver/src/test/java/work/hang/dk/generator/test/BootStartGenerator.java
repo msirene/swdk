@@ -1,5 +1,6 @@
 package work.hang.dk.generator.test;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -9,19 +10,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @author 六哥
  * @date 2018/7/10
  */
+@Slf4j
 public class BootStartGenerator {
+
 	//private static Logger logger = LoggerFactory.getLogger(BootStartGenerator.class);
-	public static void main(String[] args) {
-		startGenerator();
-	}
 
 	//boolean flag = true;
 	private static void startGenerator() {
 		try {
 			ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:dev/spring/spring-context.xml");
 			context.start();
-			//logger.debug("Generator服务提供者启动成功");
-			System.out.println("Generator服务提供者启动成功");
+			log.debug("Generator服务提供者启动成功");
 			synchronized (BootStartGenerator.class) {
 				while (true) {
 					try {
@@ -31,9 +30,12 @@ public class BootStartGenerator {
 					}
 				}
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void main(String[] args) {
+		startGenerator();
 	}
 }

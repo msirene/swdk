@@ -1,5 +1,6 @@
 package work.hang.dk.framework.generator;
 
+import lombok.extern.slf4j.Slf4j;
 import work.hang.dk.framework.bean.RemoteParameter;
 import work.hang.dk.framework.util.ApplicationProperties;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @author 六哥
  * @date 2018/6/4
  */
+@Slf4j
 public class PrimaryKeyWorker implements Runnable {
 	//private Logger logger = LoggerFactory.getLogger(PrimaryKeyWorker.class);
 	private IdCacheInterface idCache;
@@ -43,9 +45,9 @@ public class PrimaryKeyWorker implements Runnable {
 				}
 				Thread.sleep(interval);
 			} catch (Exception e) {
-				//logger.error("snowflakeId 入队列失败", e);
+				log.error("snowflakeId 入队列失败", e);
 			}
 		}
-		//logger.info("主键队列监听工作线程正常结束！");
+		log.info("主键队列监听工作线程正常结束！");
 	}
 }

@@ -1,5 +1,7 @@
 package work.hang.dk.framework.util;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -11,6 +13,7 @@ import java.util.Properties;
  * @author 六哥
  * @date 2018/7/11
  */
+@Slf4j
 public class PropertyUtil {
 	//private static final Logger logger = LoggerFactory.getLogger(PropertyUtil.class);
 	private static Properties properties;
@@ -20,7 +23,7 @@ public class PropertyUtil {
 	}
 
 	synchronized static private void loadProps(String key) {
-		//logger.info("开始加载properties文件内容.......");
+		log.info("开始加载properties文件内容.......");
 		properties = new Properties();
 		InputStream in;
 		try {
@@ -30,10 +33,10 @@ public class PropertyUtil {
 			//in = PropertyUtil.class.getResourceAsStream("/jdbc.properties");properties.load(in);
 			properties.load(in);
 		} catch (IOException e) {
-			//logger.error("jdbc.properties文件未找到");
+			log.error("jdbc.properties文件未找到");
 		}
-		//logger.info("加载properties文件内容完成...........");
-		//logger.info("properties文件内容：" + props);
+		log.info("加载properties文件内容完成...........");
+		log.info("properties文件内容：" + properties);
 	}
 
 	public static String getProperty(String key) {

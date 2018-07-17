@@ -31,11 +31,11 @@ public class CommonUtil {
 		return appendSerialNumber(rp.getSerialNumber(), message, params);
 	}
 
-	private static String appendSerialNumber(String sn, String message, Object... params) {
+	public static String appendSerialNumber(String sn, String message, Object... params) {
 		return String.format("流水号：%s,日志信息===>%s", sn, String.format(message, params));
 	}
 
-	private static String appendSerialNumber(String sn, String message) {
+	public static String appendSerialNumber(String sn, String message) {
 		return String.format("流水号：%s,日志信息===>%s", sn, message);
 	}
 
