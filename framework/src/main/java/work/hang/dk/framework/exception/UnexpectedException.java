@@ -21,9 +21,9 @@ public class UnexpectedException extends SystemException {
      //   super(MESSAGE_CODE, e);
 	//}
 	//
-	//public UnexpectedException() {
-	//	super("预期外异常！");
-	//}
+	public UnexpectedException() {
+		super("预期外异常！");
+	}
 
 	public UnexpectedException(String message, Throwable e) {
 		super(message, e);

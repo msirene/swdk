@@ -23,8 +23,7 @@ public class LoggingAspect {
 
 	private Set<String> excludeMethods = new HashSet<>();
 
-	public void setExcludeMethods() {
-		Set<String> excludeMethods = new HashSet<>();
+	public void setExcludeMethods(Set<String> excludeMethods) {
 		this.excludeMethods = excludeMethods;
 	}
 

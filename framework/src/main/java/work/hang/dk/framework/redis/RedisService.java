@@ -5,7 +5,6 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -17,10 +16,10 @@ import java.util.concurrent.TimeUnit;
  * @date 2018/7/10
  */
 @Component("redisService")
-public class RedisService {
+public class RedisService<T> {
 
 	@Resource
-	private RedisTemplate<String, Object> redisTemplate;
+	private RedisTemplate<String, T> redisTemplate;
 
 	public void del(String key) {
 		redisTemplate.delete(key);
@@ -33,23 +32,23 @@ public class RedisService {
 	@Resource(name = "redisTemplate")
 	private ValueOperations<String, Object> valueOperations;
 
-	public <T> Object get(String key) {
+	public Object get(String key) {
 		return valueOperations.get(key);
 	}
 
-	public <T> void set(String key, T obj) {
+	public void set(String key, T obj) {
 		valueOperations.set(key, obj);
 	}
 
-	public <T> void set(String key, T obj, long empire) {
+	public void set(String key, T obj, long empire) {
 		valueOperations.set(key, obj, empire, TimeUnit.MILLISECONDS);
 	}
 
-	public long lpush(String listName, Object value) {
+	public long lpush(String listName, T value) {
 		return redisTemplate.opsForList().leftPush(listName, value);
 	}
 
-	public long lpushAll(String listName, List<?> value) {
+	public long lpushAll(String listName, T... value) {
 		return redisTemplate.opsForList().leftPushAll(listName, value);
 	}
 

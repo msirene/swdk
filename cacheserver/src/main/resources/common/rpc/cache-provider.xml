@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="cacheserver" />
+
+    <!-- zookeeper注册中心 -->
+    <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" />
+
+    <dubbo:protocol name="dubbo" host="${ip}" port="${dubbo.port.prefix}93" dispatcher="all" threadpool="${dubbo.provider.threadpool}" threads="${dubbo.provider.threads.large}" />
+
+    <dubbo:service interface="work.hang.dk.cache.CommonCache" ref="commonCache" timeout="${dubbo.provider.timeout.short}" />
+    <dubbo:service interface="work.hang.dk.cache.CodeMasterCache" ref="codeMasterCache" timeout="${dubbo.provider.timeout.short}" />
+</beans>

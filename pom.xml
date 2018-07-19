@@ -12,6 +12,8 @@
         <module>framework</module>
         <module>idgenerator</module>
         <module>idgeneratorserver</module>
+        <module>cache</module>
+        <module>cacheserver</module>
     </modules>
 
     <dependencies>
